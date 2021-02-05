@@ -7,8 +7,10 @@ import classNames from 'classnames';
 import { listFiles } from '../files';
 
 // Used below, these need to be registered
-import MarkdownEditor from '../MarkdownEditor';
+import MarkdownEditor from '../components/MarkdownEditor';
 import PlaintextEditor from '../components/PlaintextEditor';
+import JSEditor from '../components/JSEditor';
+import JSONEditor from '../components/JSONEditor';
 
 import IconPlaintextSVG from '../public/icon-plaintext.svg';
 import IconMarkdownSVG from '../public/icon-markdown.svg';
@@ -23,6 +25,7 @@ const TYPE_TO_ICON = {
   'text/javascript': IconJavaScriptSVG,
   'application/json': IconJSONSVG
 };
+const API_KEY = '1whlccvfcfru3o4j8r4jkbtypnsgo83skhwc3fi5v3ylyzmd';
 
 function FilesTable({ files, activeFile, setActiveFile }) {
   return (
@@ -99,8 +102,10 @@ Previewer.propTypes = {
 
 // Uncomment keys to register editors for media types
 const REGISTERED_EDITORS = {
-  // "text/plain": PlaintextEditor,
-  // "text/markdown": MarkdownEditor,
+  'text/plain': PlaintextEditor,
+  'text/markdown': MarkdownEditor,
+  'text/javascript': JSEditor,
+  'application/json': JSONEditor
 };
 
 function PlaintextFilesChallenge() {
@@ -112,9 +117,20 @@ function PlaintextFilesChallenge() {
     setFiles(files);
   }, []);
 
-  const write = file => {
-    console.log('Writing soon... ', file.name);
-
+  const write = newFile => {
+    console.log('Writing soon... ', newFile);
+    files.forEach((file, i) => {
+      if (file.name == newFile.name) {
+        console.log(file, newFile);
+        console.log(files);
+        console.log(i);
+        files.splice(i, 1, file);
+        // files.splice(i, 1);
+        setActiveFile(null);
+        console.log(files);
+        return;
+      }
+    });
     // TODO: Write the file to the `files` array
   };
 
@@ -157,7 +173,9 @@ function PlaintextFilesChallenge() {
       <main className={css.editorWindow}>
         {activeFile && (
           <>
-            {Editor && <Editor file={activeFile} write={write} />}
+            {Editor && (
+              <Editor file={activeFile} write={write} apiKey={API_KEY} />
+            )}
             {!Editor && <Previewer file={activeFile} />}
           </>
         )}

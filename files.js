@@ -19,6 +19,26 @@ Thanks for trying our challenge!
     }
   );
 
+  const guideTest = new File(
+    [
+      `The objective is to significantly improve this file browser. Features to think about include: a text editor, markdown and code previews, or file changes persisting across reloads.
+
+Install any npm packages or use any third party code you'd like, but please make sure it is clear when you do so.
+
+Once complete, send us a forked GitHub repo link.
+
+Thanks for trying our challenge!
+
+- Rethink Engineering
+`
+    ],
+    '/test.txt',
+    {
+      type: 'text/plain',
+      lastModified: new Date('2020-01-05T16:39:00')
+    }
+  );
+
   const plain = new File(
     ['Just some text looking for an editor'],
     '/plain.txt',
@@ -90,5 +110,5 @@ export default initialValue => {
     }
   );
 
-  return [guide, plain, water, fancy, javascript, json];
+  return [guide, guideTest, plain, water, fancy, javascript, json];
 }

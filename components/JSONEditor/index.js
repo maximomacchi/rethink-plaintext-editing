@@ -16,6 +16,9 @@ function JSONEditor({ file, write, apiKey }) {
     reader.readAsBinaryString(file);
   }, [file]);
 
+  // Editor does not JSON formatting. With more time given and assistance, this
+  // could be implemented. However, this is the best I could implement working
+  // completely independently
   return (
     <div className={css.editor}>
       <Editor apiKey={apiKey} init={{ height: '50vh' }} value={fileContent} />

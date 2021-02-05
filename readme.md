@@ -43,3 +43,5 @@ npm run dev
 - Markdown rendering occurs after newline character is entered
 - Files do not save across reloads. With more time allotted, this feature would be implemented.
 - Code files do not highlight syntax for specific language and need to be formatted to code view in the formatter
+- No restrictions for using API Key with text editor. With estimated time, I wanted to focus on implementing text editor features rather than focusing on API credential security.
+- Files cannot be exported

@@ -117,21 +117,17 @@ function PlaintextFilesChallenge() {
     setFiles(files);
   }, []);
 
+  // Method is not fully implemented. With more given time and assistance, this
+  // could be implemented. However, on my own this is the best to my ability I
+  // was able to implement
   const write = newFile => {
     console.log('Writing soon... ', newFile);
     files.forEach((file, i) => {
       if (file.name == newFile.name) {
-        console.log(file, newFile);
-        console.log(files);
-        console.log(i);
         files.splice(i, 1, file);
-        // files.splice(i, 1);
-        setActiveFile(null);
-        console.log(files);
         return;
       }
     });
-    // TODO: Write the file to the `files` array
   };
 
   const Editor = activeFile ? REGISTERED_EDITORS[activeFile.type] : null;
